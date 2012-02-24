@@ -41,3 +41,4 @@ stats:
 	@psql -q ${DATABASE} < sql/time-wait-total.sql > time-wait-total.txt
 	@psql -q ${DATABASE} < sql/standings.sql > standings.txt
 	@psql -q ${DATABASE} < sql/hand-extremes.sql > hand-extremes.txt
+	@psql -q ${DATABASE} < sql/table-wait-avg.sql > table-wait-avg.txt
