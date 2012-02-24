@@ -1,7 +1,6 @@
 wrgpt-sql
 
-Code to sync, parse, and query interesting information 
-from WRGPT
+Code to sync, parse, and query interesting information from WRGPT
 
 
 Requires:
@@ -10,3 +9,33 @@ Requires:
 	rsync
 	wget
 
+
+Usage:
+	This is all driven by the makefile right now.
+	Edit the makefile if you want to change the name of the database to use
+
+	> make sync
+	> make reload
+
+
+        Note:  The last step of the reload is updating the eliminations 
+	table to account for what I consider to be a bug in the
+	eliminations.xml feed.   The wrgpt floormen disagree.
+
+	If a player is eliminated in a hand where the winners have a split
+	pot, eliminations.xml lists the "hitman" as "Player One Player Two"
+	with no delimination.   Since player names can be any number of
+	words, there isn't a good way to automatically handle this.
+
+	If the import ends and it prints the name of a player, that 
+	player has been eliminated by more than one player.  You'll 
+	need to go look up the hand and add two lines to the end of
+	sql/finish-setup.sql to manually add the elimination, and then
+	reload again.
+
+
+TODO:
+	- Import and clean up the various scripts/reports I've written
+	- Incremental load.   Right now the only way to update the data is 
+	  to blow away the database and reload.  It only takes a few
+	  minutes, but it would be nice to do incremental load.
