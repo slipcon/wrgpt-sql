@@ -4,3 +4,9 @@ Code to sync, parse, and query interesting information
 from WRGPT
 
 
+Requires:
+	perl
+	postgresql
+	rsync
+	wget
+
