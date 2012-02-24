@@ -31,3 +31,13 @@ sync:
 
 clean:
 	@rm -rf ${DATADIR}
+
+stats:
+	@psql -q ${DATABASE} < sql/advance-pct.sql > advance-pct.txt
+	@psql -q ${DATABASE} < sql/count-advance.sql > count-advance.txt
+	@psql -q ${DATABASE} < sql/count-hands.sql > count-hands.txt
+	@psql -q ${DATABASE} < sql/timeoutcount.sql > timeoutcount.txt
+	@psql -q ${DATABASE} < sql/time-wait-avg.sql > time-wait-avg.txt
+	@psql -q ${DATABASE} < sql/time-wait-total.sql > time-wait-total.txt
+	@psql -q ${DATABASE} < sql/standings.sql > standings.txt
+	@psql -q ${DATABASE} < sql/hand-extremes.sql > hand-extremes.txt

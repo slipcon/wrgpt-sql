@@ -45,7 +45,11 @@ INSERT INTO eliminations (playerId, hitman)  (
 INSERT INTO eliminations (playerId, hitman)  (
      SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Craig N. Boyle' AND p2.name='Sketch22');
 
+\echo Looking for eliminated players without hitmen:
+
 SELECT p.name 
 FROM players p left join eliminations e
 ON p.playerID = e.playerId
 WHERE p.eliminated=true AND e.playerId IS NULL;
+
+\echo If any were found, see the Note in README, update sql/finish-setup.sql

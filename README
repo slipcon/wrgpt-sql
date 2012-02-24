@@ -16,7 +16,7 @@ Usage:
 
 	> make sync
 	> make reload
-
+	> make stats
 
         Note:  The last step of the reload is updating the eliminations 
 	table to account for what I consider to be a bug in the
