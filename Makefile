@@ -16,7 +16,7 @@ dropdb:
 
 reload: dropdb createdb
 	@psql ${DATABASE} < ./sql/tables.sql
-	@./loadAll.sh
+	@./scripts/loadAll.sh
 
 sync:
 	@mkdir -p ${DATADIR}/
@@ -30,7 +30,7 @@ sync:
 	@cd ${DATADIR} && grep -q -w '&' standings.xml || true && sed 's/ \& / \&amp; /' standings.xml > foo.xml && mv foo.xml standings.xml
 
 clean:
-	@rm -rf ${DATADIR}
+	@rm -rf ${DATADIR} *.txt
 
 stats:
 	@psql -q ${DATABASE} < sql/advance-pct.sql > advance-pct.txt

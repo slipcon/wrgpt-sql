@@ -3,9 +3,9 @@
 directory=$DATADIR/history
 
 for i in `ls -1 $directory/*.history ` ; do
-	./load.pl $i
+	./scripts/load.pl $i
 done
 
-perl standings.pl
+perl ./scripts/standings.pl
 
-psql $DATABASE < sql/finish-setup.sql
+psql $DATABASE < ./sql/finish-setup.sql
