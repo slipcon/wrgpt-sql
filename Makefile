@@ -24,13 +24,22 @@ sync:
 	@mkdir -p ${DATADIR}/hands
 	@cd ${DATADIR} && rsync -avz elvis.wrgpt.org::wrgpthistory history/.
 	@cd ${DATADIR} && rsync -avz elvis.wrgpt.org::wrgpthands hands/.
-	@cd ${DATADIR} && rm -f ${DATADIR}/standings.xml ${DATADIR}/eliminations.xml
+	@cd ${DATADIR} && rm -f standings.xml eliminations.xml
 	@cd ${DATADIR} && wget http://www.wrgpt.org/stats/standings.xml
 	@cd ${DATADIR} && wget http://www.wrgpt.org/stats/eliminations.xml
 	@cd ${DATADIR} && grep -q -w '&' standings.xml || true && sed 's/ \& / \&amp; /' standings.xml > foo.xml && mv foo.xml standings.xml
 
 clean:
 	@rm -rf ${DATADIR} *.txt
+
+hist:
+	@if [[ -z "${PLAYER}" ]]; then \
+	   echo "Usage: make hist PLAYER=\"Player Name\"" ; \
+	else \
+	   ./scripts/player-time-hist.sh ${PLAYER} ; \
+	fi
+
+
 
 stats:
 	@psql -q ${DATABASE} < sql/advance-pct.sql > advance-pct.txt
