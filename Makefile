@@ -32,7 +32,12 @@ sync:
 clean:
 	@rm -rf ${DATADIR} *.txt
 
-hist:
+scripts/player-time-hist.sh:	scripts/player-time-hist.sh.in
+	@echo "Generating scripts/player-time-hist.sh..."
+	@sed 's/__DATABASE__/${DATABASE}/g' < scripts/player-time-hist.sh.in > scripts/player-time-hist.sh
+	@chmod 755 scripts/player-time-hist.sh
+
+hist:	scripts/player-time-hist.sh
 	@if [[ -z "${PLAYER}" ]]; then \
 	   echo "Usage: make hist PLAYER=\"Player Name\"" ; \
 	else \
