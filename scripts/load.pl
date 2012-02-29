@@ -58,6 +58,32 @@ sub getHandId
   return $handId;
 }
 
+sub simplifyCards
+{
+  my $cards = shift;
+
+  $cards =~ s/10/T/g;
+
+  if ($cards =~ /(.)(.) (.)(.)/)
+  {
+    $cards = "$1$3";
+    if ("$1" ne "$3")
+    {
+      if ("$2" eq "$4")
+      {
+        $cards .= "s";
+      }
+      else
+      {
+        $cards .= "o";
+      }
+    }
+  }
+
+  return $cards;
+}
+
+
 sub getPlayerId
 {
   my $name = shift;
@@ -205,7 +231,9 @@ while (<HISTORY>)
     {
       $showdown = "false";
     }
-    $dbh->do(qq(UPDATE playerhands SET cards='$cards',showdown='$showdown' WHERE playerId=$playerId AND handid=$handId));
+    my $simpleCards = simplifyCards( $cards );
+
+    $dbh->do(qq(UPDATE playerhands SET cards='$cards',simplecards='$simpleCards',showdown='$showdown' WHERE playerId=$playerId AND handid=$handId));
     next;
   }
 

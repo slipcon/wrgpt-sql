@@ -37,6 +37,7 @@ CREATE TABLE playerHands (
    playerId integer REFERENCES players (playerId),
    handId integer REFERENCES hands (handId),
    cards text,
+   simplecards text,
    showdown boolean,
    PRIMARY KEY (playerId, handId)
 );
