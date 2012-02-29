@@ -56,3 +56,7 @@ stats:
 	@psql -q ${DATABASE} < sql/standings.sql > standings.txt
 	@psql -q ${DATABASE} < sql/hand-extremes.sql > hand-extremes.txt
 	@psql -q ${DATABASE} < sql/table-wait-avg.sql > table-wait-avg.txt
+
+graph:
+	@echo "Generating hit graph..."	
+	@./scripts/hitgraph.pl | ccomps -x | dot | gvpack | neato -n2 -Tpng > hitgraph.png 
