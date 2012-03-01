@@ -187,8 +187,6 @@ while (<HISTORY>)
   next if ($actiontxt =~ /^! (\d+) players, (\d+) all in$/);
   next if ($actiontxt =~ /^! Hand over, no showdown/);
   next if ($actiontxt =~ /^! Pot (\d+): uncalled \$(\d+) returned to/);
-  next if ($actiontxt =~ /^! Pot (\d+): .* wins \$(\d+) with/);
-  next if ($actiontxt =~ /^! .* wins \$(\d+) \(net \$(\d+)\)/);
   next if ($actiontxt =~ /^! (\d+) players left in the tournament/);
   next if ($actiontxt =~ /^! A new hand will be dealt shortly/);
   next if ($actiontxt =~ /^! Game has been protested by/);
@@ -237,6 +235,27 @@ while (<HISTORY>)
     next;
   }
 
+  my $winner = "";
+  if ($actiontxt =~ /^! Pot (\d+): (.*) wins \$(\d+) with/)
+  {
+    $winner = $2;
+    print( "found winner - " . $winner . "\n");
+  }
+  elsif ($actiontxt =~ /^! (.*) wins \$(\d+) \(net \$(\d+)\)/)
+  {
+    $winner = $1;
+    print( "found winner - " . $winner . "\n");
+  }
+
+  if ($winner ne "")
+  {
+    my $playerId = getPlayerId( $winner );
+    print ("updating winner for player id $playerId\n");
+    $dbh->do(qq(UPDATE playerhands SET winner='true' WHERE playerId=$playerId AND handid=$handId));
+    next;
+  }
+
+
   # these three identify table talk, hopefully
   next if ($actiontxt =~ /^\%/);
   next if ($actiontxt =~ /^! -- /);
@@ -272,6 +291,7 @@ while (<HISTORY>)
   {
     print "end hand: $current_hand, handId=$handId\n";
     $dbh->do(qq(UPDATE hands SET inProgress=false, endTime='$ts' WHERE handId=$handId));
+    $dbh->do(qq(UPDATE playerhands SET winner='false' WHERE handid=$handId AND winner IS NULL));
   }
   else
   {

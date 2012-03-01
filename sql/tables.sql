@@ -39,6 +39,7 @@ CREATE TABLE playerHands (
    cards text,
    simplecards text,
    showdown boolean,
+   winner boolean,
    PRIMARY KEY (playerId, handId)
 );
 
