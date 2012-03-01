@@ -8,6 +8,7 @@ Requires:
 	postgresql
 	rsync
 	wget
+	graphviz
 
 
 Usage:
@@ -17,6 +18,8 @@ Usage:
 	> make sync
 	> make reload
 	> make stats
+	> make graph
+	> make hist PLAYER="Player Name"
 
         Note:  The last step of the reload is updating the eliminations 
 	table to account for what I consider to be a bug in the
@@ -35,7 +38,6 @@ Usage:
 
 
 TODO:
-	- Import and clean up the various scripts/reports I've written
 	- Incremental load.   Right now the only way to update the data is 
 	  to blow away the database and reload.  It only takes a few
 	  minutes, but it would be nice to do incremental load.
