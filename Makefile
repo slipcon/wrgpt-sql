@@ -32,6 +32,8 @@ sync:
 clean:
 	@rm -rf ${DATADIR} *.txt
 
+everything: sync reload stats graph
+
 scripts/player-time-hist.sh:	scripts/player-time-hist.sh.in
 	@echo "Generating scripts/player-time-hist.sh..."
 	@sed 's/__DATABASE__/${DATABASE}/g' < scripts/player-time-hist.sh.in > scripts/player-time-hist.sh
@@ -47,6 +49,7 @@ hist:	scripts/player-time-hist.sh
 
 
 stats:
+	@echo "Generating reports..."
 	@psql -q ${DATABASE} < sql/advance-pct.sql > advance-pct.txt
 	@psql -q ${DATABASE} < sql/count-advance.sql > count-advance.txt
 	@psql -q ${DATABASE} < sql/count-hands.sql > count-hands.txt
@@ -57,6 +60,7 @@ stats:
 	@psql -q ${DATABASE} < sql/hand-extremes.sql > hand-extremes.txt
 	@psql -q ${DATABASE} < sql/hand-frequency.sql > hand-frequency.txt
 	@psql -q ${DATABASE} < sql/table-wait-avg.sql > table-wait-avg.txt
+	@psql -q ${DATABASE} < sql/back-to-back-moves-wait.sql > back-to-back-moves-wait.txt
 
 graph:
 	@echo "Generating hit graph..."	
