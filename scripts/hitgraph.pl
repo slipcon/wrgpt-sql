@@ -54,7 +54,7 @@ sub getPlayers
     {
       my $mult = floor($ratio);
 
-      $fontsize = 14.0 + 3.0*$mult;
+      $fontsize = 14.0 + 8.0*$mult;
     }
 
 
