@@ -44,6 +44,14 @@ INSERT INTO eliminations (playerId, hitman)  (
      SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Craig N. Boyle' AND p2.name='bmv021');
 INSERT INTO eliminations (playerId, hitman)  (
      SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Craig N. Boyle' AND p2.name='Sketch22');
+INSERT INTO eliminations (playerId, hitman)  (
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='bigjess' AND p2.name='Scipio');
+INSERT INTO eliminations (playerId, hitman)  (
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='bigjess' AND p2.name='Stangrwb');
+INSERT INTO eliminations (playerId, hitman)  (
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='themissy' AND p2.name='Nixed');
+INSERT INTO eliminations (playerId, hitman)  (
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='themissy' AND p2.name='pdonahue');
 
 \echo Looking for eliminated players without hitmen:
 
