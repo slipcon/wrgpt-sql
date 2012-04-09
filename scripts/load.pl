@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 
 use DBI;
 use File::Basename;
@@ -13,9 +13,13 @@ sub getTableId
 
   my $qry = $dbh->prepare(qq(
         SELECT tableId FROM tables WHERE tablenum=$table AND round='$round'));
-  $qry->execute or die "select";
+  my $rows = $qry->execute or die "select";
 
-  my $tableId = ($qry->fetchrow_array())[0];
+  my $tableId = "";
+  if ($rows == 1)
+  {
+    $tableId = ($qry->fetchrow_array())[0];
+  }
   $qry->finish;
 
   if ( "$tableId" eq "" ) {
@@ -39,9 +43,13 @@ sub getHandId
 
   my $qry = $dbh->prepare(qq(
         SELECT handId FROM hands WHERE tableId=$tableId AND handnum=$handNum));
-  $qry->execute or die "select";
+  my $rows = $qry->execute or die "select";
 
-  my $handId = ($qry->fetchrow_array())[0];
+  my $handId = "";
+  if ($rows == 1)
+  {
+    $handId = ($qry->fetchrow_array())[0];
+  }
   $qry->finish;
 
   if ( "$handId" eq "" ) {
@@ -95,9 +103,15 @@ sub getPlayerId
 
   my $qry = $dbh->prepare(qq(
         SELECT playerId FROM players WHERE name='$name'));
-  $qry->execute or die "select";
+  my $rows = $qry->execute or die "select";
 
-  my $playerId = ($qry->fetchrow_array())[0];
+  my $playerId = "";
+
+  if ($rows == 1)
+  {
+    $playerId = ($qry->fetchrow_array())[0];
+  }
+
   $qry->finish;
 
   if ( "$playerId" eq "" ) {
@@ -126,7 +140,7 @@ sub trim
 
 
 my $hist_filepath = $ARGV[0];
-my ($hist_filename, $junk, $junk)  = fileparse($hist_filepath);
+my ($hist_filename, $junk, $junk2)  = fileparse($hist_filepath);
 
 $hist_filename =~ /(\D)(\d+)\.history/ or
        die "$hist_filename doesn't appear to be a history filename";
@@ -197,6 +211,7 @@ while (<HISTORY>)
   next if ($actiontxt =~ /^! Antes and blinds go up/);
   next if ($actiontxt =~ /^! .* resigned from the game/);
   next if ($actiontxt =~ /^! Table waiting for live reshuffle/);
+  next if ($actiontxt =~ /^! Table waiting for live redraw/);
   next if ($actiontxt =~ /^! Game delayed for 24 hours\(max\)/);
   next if ($actiontxt =~ /^! Waiting to deal new hand until tomorrow$/);
   next if ($actiontxt =~ /^! Everyone antes/);

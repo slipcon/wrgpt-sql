@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -w
 
 use DBI;
 use File::Basename;
@@ -28,6 +28,11 @@ sub getPlayers
   while (my @row = $qry->fetchrow_array())
   {
     (my $name, my $id, my $stillplaying, my $eliminated, my $bankroll) = @row;
+
+    if (! defined( $bankroll))
+    {
+      $bankroll = 0;
+    }
 
     my $color="black";
     if ($eliminated == 1)
