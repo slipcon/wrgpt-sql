@@ -18,9 +18,11 @@ order by wait desc limit 20;
 \echo  Same report, for current round:
 \echo
 
+
 select p.name, t.round, t.tablenum, h.handnum, m.wait
 from moves m, moves n, hands h, tables t, players p
 where m.moveid=n.moveid+1 and m.playerid=n.playerid and m.handid=n.handid
 and m.handid=h.handid and t.tableid=h.tableid  and p.playerid=m.playerid
-and t.round='d'
+and t.round=(select chr(max(ascii(round))) from tables)
 order by wait desc limit 20;
+
