@@ -1,5 +1,5 @@
 
-export DATABASE:=wrgpt21
+export DATABASE:=wrgpt22
 export DATADIR:=data
 
 all:
@@ -30,7 +30,7 @@ sync:
 	@cd ${DATADIR} && grep -q -w '&' standings.xml || true && sed 's/ \& / \&amp; /' standings.xml > foo.xml && mv foo.xml standings.xml
 
 clean:
-	@rm -rf ${DATADIR} *.txt
+	@rm -rf ${DATADIR} *.txt hitgraph.png scripts/player-time-hist.sh
 
 everything: sync reload stats graph
 

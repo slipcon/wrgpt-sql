@@ -16,42 +16,30 @@ INSERT INTO playerhands (
    */
 
 
+/* Need to insert eliminations where there are double hits - the query
+   will look like:
+   
 INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Dave Kalagher' AND p2.name='Penguintopia');
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Eliminated Player' AND p2.name='Hit Man 1');
 INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Dave Kalagher' AND p2.name='Marcia Kim');
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Eliminated Player' AND p2.name='Hit Man 2');
+
+     */
+
 INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='craig martin' AND p2.name='PorkFat');
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Peppermint Ninja' AND p2.name='Short Stack');
 INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='craig martin' AND p2.name='BobW');
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Peppermint Ninja' AND p2.name='ITCs Running Aces');
+
 INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='JAFO' AND p2.name='Snake');
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Jim McGill' AND p2.name='mirandatory');
 INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='JAFO' AND p2.name='Troy McCormick');
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Jim McGill' AND p2.name='Spring Hill Johnny');
+
 INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='thePerl' AND p2.name='ROSSBOSS');
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Super Rock' AND p2.name='Ron Preston');
 INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='thePerl' AND p2.name='Luigi Barone');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Lisa C' AND p2.name='SurfingJerry');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Lisa C' AND p2.name='Mr. Flintstone');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Zanotti' AND p2.name='Nikadai');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Zanotti' AND p2.name='Jan-Erik Brundell');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Craig N. Boyle' AND p2.name='bmv021');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Craig N. Boyle' AND p2.name='Sketch22');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='bigjess' AND p2.name='Scipio');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='bigjess' AND p2.name='Stangrwb');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='themissy' AND p2.name='Nixed');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='themissy' AND p2.name='pdonahue');
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Super Rock' AND p2.name='Zipper');
 
 \echo Looking for eliminated players without hitmen:
 
