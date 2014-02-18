@@ -27,19 +27,38 @@ INSERT INTO eliminations (playerId, hitman)  (
      */
 
 INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Peppermint Ninja' AND p2.name='Short Stack');
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='dudehed' AND p2.name='Rcheney');
 INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Peppermint Ninja' AND p2.name='ITCs Running Aces');
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='dudehed' AND p2.name='Mulligan');
 
 INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Jim McGill' AND p2.name='mirandatory');
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Bryan S. Slick' AND p2.name='Rick Brown');
 INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Jim McGill' AND p2.name='Spring Hill Johnny');
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Bryan S. Slick' AND p2.name='Mark-Ed Cards');
 
 INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Super Rock' AND p2.name='Ron Preston');
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Aquarian' AND p2.name='Swamper Brian');
 INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Super Rock' AND p2.name='Zipper');
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Aquarian' AND p2.name='MartinL');
+
+INSERT INTO eliminations (playerId, hitman)  (
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='cw' AND p2.name='tkp');
+INSERT INTO eliminations (playerId, hitman)  (
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='cw' AND p2.name='pmppk');
+
+
+/*
+These next two entries are hopefully temporary:  they are not the result of a double elimination.  Instead
+for some reason there is corruption in the eliminations.xml file, and it claims that both 'gerdog'
+and 'winsumlosesum' were eliminated by 'winsumlosesum has: Ah Qd'.   I've contacted the wrgpt floorman
+but as of yet it has not been corrected.
+*/
+
+INSERT INTO eliminations (playerId, hitman)  (
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='gerdog' AND p2.name='El Guapo');
+INSERT INTO eliminations (playerId, hitman)  (
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='winsumlosesum' AND p2.name='El Guapo');
+
 
 \echo Looking for eliminated players without hitmen:
 

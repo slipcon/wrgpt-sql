@@ -1,5 +1,5 @@
 
-export DATABASE:=wrgpt22
+export DATABASE:=wrgpt23
 export DATADIR:=data
 
 all:
@@ -10,7 +10,7 @@ createdb:
 
 dropdb:
 	@psql -q -c '\q' ${DATABASE} > /dev/null 2>&1 ; \
-	if [[ "$$?" -eq "0" ]]; then \
+	if [ "$$?" -eq "0" ]; then \
 	    dropdb ${DATABASE} ; \
 	fi
 
@@ -40,7 +40,7 @@ scripts/player-time-hist.sh:	scripts/player-time-hist.sh.in
 	@chmod 755 scripts/player-time-hist.sh
 
 hist:	scripts/player-time-hist.sh
-	@if [[ -z "${PLAYER}" ]]; then \
+	@if [ -z "${PLAYER}" ]; then \
 	   echo "Usage: make hist PLAYER=\"Player Name\"" ; \
 	else \
 	   ./scripts/player-time-hist.sh ${PLAYER} ; \
