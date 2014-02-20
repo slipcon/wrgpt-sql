@@ -47,19 +47,6 @@ INSERT INTO eliminations (playerId, hitman)  (
      SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='cw' AND p2.name='pmppk');
 
 
-/*
-These next two entries are hopefully temporary:  they are not the result of a double elimination.  Instead
-for some reason there is corruption in the eliminations.xml file, and it claims that both 'gerdog'
-and 'winsumlosesum' were eliminated by 'winsumlosesum has: Ah Qd'.   I've contacted the wrgpt floorman
-but as of yet it has not been corrected.
-*/
-
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='gerdog' AND p2.name='El Guapo');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='winsumlosesum' AND p2.name='El Guapo');
-
-
 \echo Looking for eliminated players without hitmen:
 
 SELECT p.name 
