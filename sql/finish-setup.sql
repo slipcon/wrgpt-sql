@@ -26,26 +26,6 @@ INSERT INTO eliminations (playerId, hitman)  (
 
      */
 
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='dudehed' AND p2.name='Rcheney');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='dudehed' AND p2.name='Mulligan');
-
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Bryan S. Slick' AND p2.name='Rick Brown');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Bryan S. Slick' AND p2.name='Mark-Ed Cards');
-
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Aquarian' AND p2.name='Swamper Brian');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Aquarian' AND p2.name='MartinL');
-
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='cw' AND p2.name='tkp');
-INSERT INTO eliminations (playerId, hitman)  (
-     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='cw' AND p2.name='pmppk');
-
 
 \echo Looking for eliminated players without hitmen:
 

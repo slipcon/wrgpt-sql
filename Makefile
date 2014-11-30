@@ -1,5 +1,5 @@
 
-export DATABASE:=wrgpt23
+export DATABASE:=wrgpt24
 export DATADIR:=data
 
 all:
@@ -22,8 +22,8 @@ sync:
 	@mkdir -p ${DATADIR}/
 	@mkdir -p ${DATADIR}/history
 	@mkdir -p ${DATADIR}/hands
-	@cd ${DATADIR} && rsync -avz elvis.wrgpt.org::wrgpthistory history/.
-	@cd ${DATADIR} && rsync -avz elvis.wrgpt.org::wrgpthands hands/.
+	@cd ${DATADIR} && rsync -avz --delete elvis.wrgpt.org::wrgpthistory history/.
+	@cd ${DATADIR} && rsync -avz --delete elvis.wrgpt.org::wrgpthands hands/.
 	@cd ${DATADIR} && rm -f standings.xml eliminations.xml
 	@cd ${DATADIR} && wget http://www.wrgpt.org/stats/standings.xml
 	@cd ${DATADIR} && wget http://www.wrgpt.org/stats/eliminations.xml
