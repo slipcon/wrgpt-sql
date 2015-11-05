@@ -74,7 +74,15 @@ sub simplifyCards
 
   if ($cards =~ /(.)(.) (.)(.)/)
   {
-    $cards = "$1$3";
+    if ("$1" lt "$3")
+    {
+      $cards = "$1$3";
+    }
+    else
+    {
+      $cards = "$3$1";
+    }
+
     if ("$1" ne "$3")
     {
       if ("$2" eq "$4")

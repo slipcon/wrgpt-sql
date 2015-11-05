@@ -9,6 +9,18 @@ GROUP BY hour ORDER BY hour;
 EOF
 
 echo
+echo "Day of week (0=Sun,... 6=Sat.)"
+echo
+
+sed "s/%USER%/$*/g"  << EOF | psql __DATABASE__
+SELECT       EXTRACT(dow FROM m.movetime) AS dow,
+       repeat('*'::text,COUNT(EXTRACT(dow from m.movetime))::int) AS count
+FROM moves m, players p
+WHERE m.playerid=p.playerid AND m.wait != '00:00:00' AND p.name='%USER%'
+GROUP BY dow ORDER BY dow;
+EOF
+
+echo
 echo "Note: the times in the player histogram are in the time zone of"
 echo "this computer, not necessarily PST like the WRGPT server"
 echo
