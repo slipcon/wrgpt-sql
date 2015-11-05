@@ -26,6 +26,16 @@ INSERT INTO eliminations (playerId, hitman)  (
 
      */
 
+INSERT INTO eliminations (playerId, hitman)  (
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Jason Grosman' AND p2.name='Bob The Butcher');
+INSERT INTO eliminations (playerId, hitman)  (
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Jason Grosman' AND p2.name='Chris Learmonth');
+
+INSERT INTO eliminations (playerId, hitman)  (
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Jonne Pistol' AND p2.name='GunsNRoses');
+INSERT INTO eliminations (playerId, hitman)  (
+     SELECT p1.playerId, p2.playerId FROM players p1, players p2 WHERE p1.name='Jonne Pistol' AND p2.name='Johnny Ice');
+
 
 \echo Looking for eliminated players without hitmen:
 
