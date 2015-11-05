@@ -196,6 +196,13 @@ while (<HISTORY>)
     %playerHandCache = ();
   }
 
+  # doing the deltaT computation here, before all the "next if" statements
+  # ensures that we reset prevTime on each line - otherwise "first to act"
+  # moves in a hand ended up being credited for wait time since the end 
+  # of the previous hand.
+  my $deltaT = $timet - $prevTime;
+  $prevTime = $timet;
+
   next if ($actiontxt =~ /^! .* is back from vacation$/);
   next if ($actiontxt =~ /^! .* went on vacation until/);
   next if ($actiontxt =~ /^! Dealing a new hand$/);
@@ -320,7 +327,6 @@ while (<HISTORY>)
   {
     #print "LOG: getting playerid for \"$player\" for action \"$actiontxt\"\n";
     my $playerId = getPlayerId( $player );
-    my $deltaT = $timet - $prevTime;
     $dbh->do(qq(INSERT INTO moves (playerid, handid, moveTime, wait) VALUES ($playerId, $handId, '$ts', '$deltaT s')));
 
 
@@ -331,7 +337,6 @@ while (<HISTORY>)
 
   }
 
-  $prevTime = $timet;
 }
 close(HISTORY);
 
