@@ -1,5 +1,5 @@
 
-export DATABASE:=wrgpt25
+export DATABASE:=wrgpt27
 export DATADIR:=data
 
 all:
